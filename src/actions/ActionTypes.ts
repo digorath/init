@@ -2,6 +2,7 @@ export enum ActionType {
   Add,
   Delete,
   Next,
+  Reset,
   Update,
 }
 
@@ -18,6 +19,10 @@ export type NextAction = {
   type: ActionType.Next;
 };
 
+export type ResetAction = {
+  type: ActionType.Reset;
+};
+
 export type UpdateAction = {
   type: ActionType.Update;
   payload: {
@@ -31,4 +36,5 @@ export type InitiativeAction =
   | AddAction
   | DeleteAction
   | NextAction
+  | ResetAction
   | UpdateAction;

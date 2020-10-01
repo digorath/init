@@ -1,4 +1,4 @@
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import React from 'react';
 import {StoreState} from '../reducers/InitiativeList';
@@ -27,7 +27,9 @@ export const CombatantList = () => {
     indexOrder.push(i);
     i++;
   }
-
+  if (numCombatants <= 0) {
+    return <View style={styles.placeholder} />;
+  }
   return (
     <FlatList
       data={indexOrder}
@@ -36,3 +38,7 @@ export const CombatantList = () => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  placeholder: {flex: 1},
+});

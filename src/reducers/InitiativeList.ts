@@ -14,6 +14,7 @@ const INITIAL_STATE: {activeTurn: number; combatants: Array<Combatant>} = {
 
 export type StoreState = typeof INITIAL_STATE;
 
+// always use topmost initiative number of the displayed list.
 const getNewInitiative = ({combatants, activeTurn}: StoreState) => {
   const numCombatants = combatants.length;
   if (numCombatants === 0) {
@@ -23,6 +24,7 @@ const getNewInitiative = ({combatants, activeTurn}: StoreState) => {
   }
 };
 
+// always add new combatant at the top of the displayed list.
 const addNewCombatant = (
   {combatants, activeTurn}: StoreState,
   newCombatant: Combatant,
@@ -51,7 +53,7 @@ const deleteCombatantAtIndex = (
 export const initiativeListReducer = (
   state = INITIAL_STATE,
   action: InitiativeAction,
-): typeof INITIAL_STATE => {
+): StoreState => {
   switch (action.type) {
     case ActionType.Add: {
       const newCombatant = {
@@ -77,6 +79,15 @@ export const initiativeListReducer = (
       return {
         ...state,
         activeTurn: (state.activeTurn + 1) % state.combatants.length,
+      };
+    }
+    case ActionType.Reset: {
+      return {
+        activeTurn: 0,
+        combatants: [
+          {name: 'Combatant 1', initiative: DEFAULT_INITIATIVE},
+          {name: 'Combatant 2', initiative: DEFAULT_INITIATIVE},
+        ],
       };
     }
     case ActionType.Update: {

@@ -3,6 +3,7 @@ import {
   AddAction,
   DeleteAction,
   NextAction,
+  ResetAction,
   UpdateAction,
 } from './ActionTypes';
 
@@ -14,6 +15,8 @@ export const createDeleteAction = (index: number): DeleteAction => ({
 });
 
 export const createNextAction = (): NextAction => ({type: ActionType.Next});
+
+export const createResetAction = (): ResetAction => ({type: ActionType.Reset});
 
 export const createUpdateAction = (
   index: number,

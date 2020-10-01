@@ -1,11 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   createDeleteAction,
@@ -70,7 +65,7 @@ export const CombatantEntry = ({index}: Props) => {
         onEndEditing={onEndEditing}
       />
       <TouchableOpacity style={styles.deleteContainer} onPress={onPressDelete}>
-        <Text style={styles.delete}>X</Text>
+        <Icon name="close" size={32} color="red" style={styles.deleteIcon} />
       </TouchableOpacity>
     </View>
   );
@@ -83,17 +78,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  delete: {
-    color: 'red',
-    fontSize: 32,
-    padding: 8,
+  deleteIcon: {
+    alignSelf: 'center',
   },
   deleteContainer: {
-    margin: 4,
+    height: 64,
     justifyContent: 'center',
+    margin: 4,
+    width: 64,
   },
   init: {
     color: Colors.text,
+    flex: 1,
     fontSize: 32,
   },
   name: {
